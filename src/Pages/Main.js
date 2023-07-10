@@ -49,7 +49,7 @@ const TimeTable = styled.div`
     justify-content: center;
     align-items: center;
     width: 287px;
-    height: 676px;
+    height: 640px;
     gap: 20px;
     border-radius: 10px;
     background-color: white;
@@ -59,11 +59,11 @@ const Data = styled.h1`
     display: block;
     margin: 0px;
     color: #585858;
-    font-size: 25px;
+    font-size: 30px;
 `;
 
 const Title = styled.h1`
-    font-size: 45px;
+    font-size: 40px;
 `;
 
 const TableTitle = styled.h1`
