@@ -9,7 +9,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        {/*<Route path="/login" element={<Login />} />*/}
         <Route path="/Announcement" element={<Announcement />} />
         <Route path="/StudentInfo" element={<StudentInfo />} />
         <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
