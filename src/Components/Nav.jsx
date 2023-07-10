@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
@@ -13,7 +12,7 @@ const Nav = () => {
       <Right>
         <UserInfo>
           <UserName>1-2 최수장</UserName>
-          <UserButton>로그아웃</UserButton>
+          <Logout>{"〈"} 로그아웃</Logout>
         </UserInfo>
         <RightBar />
       </Right>
@@ -23,7 +22,8 @@ const Nav = () => {
 
 export default Nav;
 
-const Wrapper = styled.div`
+// 배경 부분
+const Wrapper = styled.div` 
   display: inline-flex;
   justify-content: center;
   gap: 50%;
@@ -32,6 +32,7 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
+//각각 왼쪽 내용 (네비게이션 버튼들), 오른쪽 내용 (로그아웃 버튼)
 const Left = styled.div`
   display: flex;
   justify-content: center;
@@ -48,6 +49,13 @@ const Right = styled.div`
   gap: 15px;
 `;
 
+//왼쪽 내용
+const Logo = styled.img`
+  width: 100px;
+  height: 80px;
+  margin-right: -10px;
+`;
+
 const LinkButton = styled.h1`
   display: inline-block;
   transition: all 0.2s;
@@ -57,29 +65,33 @@ const LinkButton = styled.h1`
   }
 `;
 
-const UserButton = styled.h1`
-  display: block;
-  font-size: 15px;
-`;
-
-const UserName = styled.h1`
-  font-size: 20px;
-`;
-
+//오른쪽 내용
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 5px
+`;
+
+const UserName = styled.h1`
+  font-size: 25px;
+  margin: 0px;
+`;
+
+const Logout = styled.h1`
+  font-size: 15px;
+  color: #A3A3A3;
+  font-weight: lighter;
+  margin: 0px;
+  transition: all 0.2s;
+  &:hover {
+    cursor: pointer;
+    color: #585858;
+  }
 `;
 
 const RightBar = styled.div`
   width: 3px;
   height: 70px;
   background-color: #FFCF5E;
-`;
-
-const Logo = styled.img`
-  width: 100px;
-  height: 80px;
-  margin-right: -10px;
 `;
