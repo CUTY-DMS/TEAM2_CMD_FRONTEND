@@ -8,7 +8,7 @@ const Nav = () => {
         <Logo src="/imgs/Logo.svg" alt="" />
         <h1><StyledLink to="/">시간표</StyledLink></h1>
         <h1><StyledLink to="/Announcement">공지사항</StyledLink></h1>
-        <h1><StyledLink to="/StudentInfo">학생정보</StyledLink></h1>
+        <h1><StyledLink to="/StudentList">학생정보</StyledLink></h1>
       </Left>
       <Right>
         <UserInfo>
