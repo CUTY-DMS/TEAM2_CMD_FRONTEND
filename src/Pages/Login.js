@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 function Login() {
 	return (
@@ -16,8 +17,8 @@ function Login() {
 					<Input placeholder="비밀번호를 입력하세요.." type="password"></Input>
 					<Line></Line>
 					<AccountBox>
-						<NoAccount>아직 계정이 없으신가요? </NoAccount>
-						<SignUpButton>회원가입</SignUpButton>
+						<NoAccount>아직 계정이 없으신가요?</NoAccount>
+						<SignUpButton to="/SignUp">회원가입</SignUpButton>
 					</AccountBox>
 				</Wrapper>
 				<LoginButton>로그인</LoginButton>
@@ -89,19 +90,32 @@ const NoAccount = styled.div`
 	font-size: small;
 	color: #585858;
 `;
-const SignUpButton = styled.button`
+const SignUpButton = styled(Link)`
+	text-decoration-line: none;
 	background-color: white;
-    margin-top: -2px;
 	border: none;
 	color: black;
 	font-weight: bold;
+	font-size: small;
 	cursor: pointer;
+	&:link {
+		color: #000;
+	  	}
+	&:visited {
+		color: #000;
+	}
+	&:hover {
+	  	cursor: pointer;
+	  	color: #000;
+	}
 `;
 
 const AccountBox = styled.div`
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	padding-top: 20px;
+	gap: 5px;
 `;
 
 const LoginButton = styled.button`

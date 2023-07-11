@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 function SignUp() {
 	return (
@@ -29,7 +30,7 @@ function SignUp() {
 				<Wrapper>
 					<AccountBox>
 						<NoAccount>이미 계정이 있으신가요?</NoAccount>
-						<LoginButton>로그인</LoginButton>
+						<LoginButton to="/Login">로그인</LoginButton>
 					</AccountBox>
 				</Wrapper>
 				<SignUpButton>회원가입</SignUpButton>
@@ -48,7 +49,7 @@ const Body = styled.body`
 	height: 100vh;
 	margin: 0;
 	padding: 0px;
-	background: #ffcf5e;
+	background-color: #ffcf5e;
 `;
 
 const Container = styled.div`
@@ -60,23 +61,23 @@ const Container = styled.div`
 	height: 770px;
 	box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
-	background: #fff;
+	background-color: white;
 `;
 
 const Title = styled.div`
-	font-size: 30px;
-	font-weight: 1000;
 	padding-top: 50px;
 	padding-bottom: 80px;
+	font-size: 30px;
+	font-weight: 1000;
 `;
 
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-bottom: 20px;
 	width: 418px;
 	height: 69px;
-	margin-bottom: 20px;
 `;
 
 const SignTitle = styled.div`
@@ -104,18 +105,30 @@ const NoAccount = styled.div`
 	font-size: small;
 	color: #585858;
 `;
-const LoginButton = styled.button`
-	margin-top: -2px;
+const LoginButton = styled(Link)`
+	text-decoration-line: none;
 	background-color: white;
 	border: none;
 	color: black;
 	font-weight: bold;
+	font-size: small;
 	cursor: pointer;
+	&:link {
+		color: #000;
+	}
+	&:visited {
+		color: #000;
+	}
+	&:hover {
+	  	cursor: pointer;
+	  	color: #000;
+	}
 `;
 
 const AccountBox = styled.div`
 	display: flex;
     margin-bottom: 50px;
+	gap: 5px;
 `;
 const SignUpButton = styled.button`
 	background-color: #ffcf5e;
