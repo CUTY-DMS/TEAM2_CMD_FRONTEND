@@ -1,27 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 import Nav from '../Components/Nav';
+import TimeTable from '../Components/TimeTable'
+const date = new Date();
 
 function Main() {
+    //함수 출처 : https://gist.github.com/leegeunhyeok/8695aaf29674b098b7da7696e90810bb
+    const getWeekNumber = (dateFrom = new Date()) => {
+        const currentDate = dateFrom.getDate();
+        const startOfMonth = new Date(dateFrom.setDate(1));
+        const weekDay = startOfMonth.getDay();
+        return parseInt(((weekDay - 1) + currentDate) / 7) + 1;
+    }
+    const month = date.getMonth()+1;
+    const weekNum = getWeekNumber(date);
+
     return (
         <Wrapper>
             <Nav />
-            <Title>2023년 7월 2주차</Title>
+            <Title>2023년 {month}월 {weekNum}주차</Title>
             <Table>
-                <TimeTable>
-                    <TableTitle>월</TableTitle>
-                    <Data>국어</Data>
-                    <Data>수학</Data>
-                    <Data>사회</Data>
-                    <Data>과학</Data>
-                    <Data>영어</Data>
-                    <Data>프로그래밍</Data>
-                    <Data>컴퓨터구조</Data>
-                </TimeTable>
-                <TimeTable><TableTitle>화</TableTitle></TimeTable>
-                <TimeTable><TableTitle>수</TableTitle></TimeTable>
-                <TimeTable><TableTitle>목</TableTitle></TimeTable>
-                <TimeTable><TableTitle>금</TableTitle></TimeTable>
+                <TimeTable day="월" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
+                <TimeTable day="화" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
+                <TimeTable day="수" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
+                <TimeTable day="목" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
+                <TimeTable day="금" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
             </Table>
         </Wrapper>
     )
@@ -43,29 +46,6 @@ const Table = styled.div`
     gap: 25px;
 `;
 
-const TimeTable = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 287px;
-    height: 640px;
-    gap: 20px;
-    border-radius: 10px;
-    background-color: white;
-`;
-
-const Data = styled.h1`
-    display: block;
-    margin: 0px;
-    color: #585858;
-    font-size: 30px;
-`;
-
 const Title = styled.h1`
     font-size: 40px;
-`;
-
-const TableTitle = styled.h1`
-    margin: 0px;
 `;
