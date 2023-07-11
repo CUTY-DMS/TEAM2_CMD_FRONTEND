@@ -20,6 +20,9 @@ const Wrapper = styled.div`
   height: 155px;
   background-color: white;
   border-radius: 0px 20px 20px 20px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Title = styled.h1`

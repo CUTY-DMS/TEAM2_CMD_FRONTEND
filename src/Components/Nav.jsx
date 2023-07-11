@@ -12,8 +12,8 @@ const Nav = () => {
       </Left>
       <Right>
         <UserInfo>
-          <UserName>1-2 최수장</UserName>
-          <Logout>{"〈"} 로그아웃</Logout>
+          <UserName to="/MyProfile">1-2 최수장</UserName>
+          <Logout to="/Login">{"〈"} 로그아웃</Logout>
         </UserInfo>
         <RightBar />
       </Right>
@@ -59,26 +59,36 @@ const Logo = styled.img`
 
 //오른쪽 내용
 const UserInfo = styled.div`
+  text-decoration-line: none;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 5px
 `;
 
-const UserName = styled.h1`
+const UserName = styled(Link)`
+  font-weight: bolder;
+  text-decoration-line: none;
   font-size: 25px;
   margin: 0px;
+  &:link,&:visited,&:hover {
+    cursor: pointer;
+    color: #000;
+  }
 `;
 
-const Logout = styled.h1`
-  font-size: 15px;
-  color: #A3A3A3;
-  font-weight: lighter;
+const Logout = styled(Link)`
   margin: 0px;
+  text-decoration-line: none;
+  font-size: 15px;
+  font-weight: lighter;
   transition: all 0.2s;
+  &:link,&:visited {
+    color: #A3A3A3;
+  }
   &:hover {
     cursor: pointer;
-    color: #585858;
+    color: #000;
   }
 `;
 
