@@ -1,10 +1,9 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Main from './Pages/Main';
-import Announcement from './Pages/Announcement';
-import AnnounceWrite from './Pages/AnnounceWrite';
-import Login from './Pages/Login';
-import SignUp from './Pages/SignUp';
-import MyProfile from './Pages/MyProfile';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Main from "./Pages/Main";
+import Announcement from "./Pages/Announcement";
+import AnnounceWrite from "./Pages/AnnounceWrite";
+import Login from "./Pages/Login";
+import SignUp from "./Pages/SignUp";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/MyProfile" element={<MyProfile />} />
       </Routes>
     </BrowserRouter>
   );

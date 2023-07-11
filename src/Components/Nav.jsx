@@ -31,7 +31,6 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100px;
   background-color: white;
-  }
 `;
 
 //각각 왼쪽 내용 (네비게이션 버튼들), 오른쪽 내용 (로그아웃 버튼)
