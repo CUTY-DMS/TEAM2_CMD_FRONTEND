@@ -5,6 +5,7 @@ import AnnounceWrite from "./Pages/AnnounceWrite";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import StudentDetail from "./Pages/StudentDetail";
+import StudentList from "./Pages/StudentList";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/StudentDetail" element={<StudentDetail />} />
-        <Route path="/StudentList" element={<StudentDetail />} />
+        <Route path="/StudentList" element={<StudentList />} />
       </Routes>
     </BrowserRouter>
   );
