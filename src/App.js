@@ -4,6 +4,7 @@ import Announcement from "./Pages/Announcement";
 import AnnounceWrite from "./Pages/AnnounceWrite";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import StudentDetail from "./Pages/StudentDetail";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/StudentDetail" element={<StudentDetail />} />
+        <Route path="/StudentList" element={<StudentDetail />} />
       </Routes>
     </BrowserRouter>
   );
