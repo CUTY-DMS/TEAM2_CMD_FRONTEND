@@ -13,7 +13,7 @@ function AnnounceWrite() {
     return (
         <Wrapper style={disFlex}>
             <Nav />
-            <_BoxFlex>
+            <BoxFlex>
                 <Textbox style={disFlex}>
                     <Title type="text" placeholder="제목"/>
                     <Text rows="25" cols="155" placeholder="내용을 입력해주세요." />
@@ -24,7 +24,7 @@ function AnnounceWrite() {
                 </svg>
                 <h1>작성 완료</h1>
                 </FinButton>
-            </_BoxFlex>
+            </BoxFlex>
         </Wrapper>
     )
 }
@@ -92,7 +92,7 @@ const FinButton = styled.button`
     }
 `;
 
-const _BoxFlex = styled.div`
+const BoxFlex = styled.div`
     display: flex;
     flex-direction: column
 `;
