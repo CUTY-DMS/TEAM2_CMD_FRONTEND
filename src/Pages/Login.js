@@ -37,7 +37,6 @@ const Body = styled.div`
 	height: 100vh;
 	margin: 0;
 	padding: 0px;
-	background: #ffcf5e;
 `;
 
 const Container = styled.div`
