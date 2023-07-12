@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const User = () => {
+const User = ({Class, Name}) => {
   return (
     <Wrapper>
       <UserIcon src="/imgs/User.svg" alt="User"/>
-      <UserName>1201김이름</UserName>
+      <UserName>{Class} {Name}</UserName>
     </Wrapper>
   );
 };
@@ -15,6 +15,11 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
+    &:hover {
+      cursor: pointer;
+      background-color: #FFC744;
+      border-radius: 15px;
+    }
 `;
 
 const UserIcon = styled.img`
@@ -24,5 +29,5 @@ const UserIcon = styled.img`
 
 const UserName = styled.div`
     font-weight: 400;
-    font-size: 35px;
+    font-size: 30px;
 `;

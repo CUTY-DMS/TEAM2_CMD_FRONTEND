@@ -9,9 +9,9 @@ function StudentList() {
       <Nav />
       <LineBox>
         <Line>
-          <User />
-          <User />
-          <User />
+          <User Class="1101" Name="김이름" />
+          <User Class="1101" Name="김이름"/>
+          <User Class="1101" Name="김이름"/>
         </Line>
       </LineBox>
     </Wrapper>
