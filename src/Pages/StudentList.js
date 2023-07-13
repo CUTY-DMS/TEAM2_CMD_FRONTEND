@@ -29,7 +29,7 @@ const LineBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
   gap: 15px;
 `;
 
@@ -38,5 +38,5 @@ const Line = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
