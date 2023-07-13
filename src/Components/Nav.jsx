@@ -9,6 +9,7 @@ const Nav = () => {
         <h1><StyledLink to="/">시간표</StyledLink></h1>
         <h1><StyledLink to="/Announcement">공지사항</StyledLink></h1>
         <h1><StyledLink to="/StudentList">학생정보</StyledLink></h1>
+        <h1><StudyPlate to="#">StudyPlate</StudyPlate></h1>
       </Left>
       <Right>
         <UserInfo>
@@ -27,7 +28,7 @@ export default Nav;
 const Wrapper = styled.div` 
   display: inline-flex;
   justify-content: center;
-  gap: 50%;
+  gap: 45%;
   width: 100%;
   height: 100px;
   background-color: white;
@@ -101,14 +102,22 @@ const StyledLink = styled(Link)`
   display: inline-block;
   text-decoration-line: none;
   transition: all 0.2s;
-  &:link {
+  &:link, &:visited {
     color: #A3A3A3;
-  }
-  &:visited {
-    color: #A3A3A3;
-  }
-  &:hover {
+  } &:hover {
     cursor: pointer;
     color: #000;
+  }
+`;
+
+const StudyPlate = styled(Link)`
+  display: inline-block;
+  text-decoration-line: none;
+  transition: all 0.2s;
+  &:link, &:visited {
+    color: #A3A3A3;
+  } &:hover {
+    cursor: pointer;
+    color: #41BE41;
   }
 `;

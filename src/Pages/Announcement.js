@@ -52,12 +52,15 @@ const Write = styled.div`
     align-items: center;
     align-self: flex-end;
     gap: 10px;
-    margin: 0;
-    margin-right: 1px;
-    margin-top: 1px;
+    padding: 5px;
     font-size: 15px;
     font-weight: lighter;
-    &:hover { cursor: pointer; }
+    transition: 0.2s all;
+    &:hover { 
+      cursor: pointer; 
+      background-color: #FFC744;
+      border-radius: 15px; 
+    }
 `;
 
 const StyledLink = styled(Link)`

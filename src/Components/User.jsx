@@ -15,6 +15,8 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
+    padding: 10px;
+    transition: 0.2s all;
     &:hover {
       cursor: pointer;
       background-color: #FFC744;
@@ -28,6 +30,6 @@ const UserIcon = styled.img`
 `;
 
 const UserName = styled.div`
-    font-weight: 400;
-    font-size: 30px;
+    font-weight: 600;
+    font-size: 29px;
 `;
