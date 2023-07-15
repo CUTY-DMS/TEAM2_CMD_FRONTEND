@@ -7,7 +7,7 @@ const Nav = () => {
       <Left>
         <Logo src="/imgs/SpLogo.svg" alt="" />
         <Buttons>
-          <h1><StyledLink to="/StudyPlate/schedule">과제 일정</StyledLink></h1>
+          <h1><StyledLink to="/StudyPlate/">과제 일정</StyledLink></h1>
           <h1><StyledLink to="/StudyPlate/check">과제 확인</StyledLink></h1>
           <h1><CMD to="/">CMD</CMD></h1>
         </Buttons>

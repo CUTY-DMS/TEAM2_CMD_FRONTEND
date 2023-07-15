@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import StudentDetail from "./Pages/StudentDetail";
 import StudentList from "./Pages/StudentList";
+import SpMain from "./Pages/StudyPlate/Main";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/StudentDetail" element={<StudentDetail />} />
         <Route path="/StudentList" element={<StudentList />} />
+        <Route path="/StudyPlate/" element={<SpMain />} />
       </Routes>
     </BrowserRouter>
   );
