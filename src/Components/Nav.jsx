@@ -9,7 +9,7 @@ const Nav = () => {
         <h1><StyledLink to="/">시간표</StyledLink></h1>
         <h1><StyledLink to="/Announcement">공지사항</StyledLink></h1>
         <h1><StyledLink to="/StudentList">학생정보</StyledLink></h1>
-        <h1><StudyPlate to="/StudyPlate/Main">StudyPlate</StudyPlate></h1>
+        <h1><StudyPlate to="/StudyPlate/">StudyPlate</StudyPlate></h1>
       </Left>
       <Right>
         <UserInfo>
