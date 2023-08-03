@@ -1,19 +1,55 @@
 import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
-import React from "react";
+import React, { useState } from "react";
 
 export const SignUp = () => {
+
+  const [data, setData] = useState({
+    userId : "",
+    password : "",
+    username : "",
+    grader : 0,
+    schoolClass : 0,
+    userEmail : "",
+    subjectType : "",
+  })
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setData({...data, [name]: value});
+  }
+
+  const handleLogin = () => {
+    // signIn(data).then(res => {
+    //   if(res) { 
+    //     setCookie("accessToken", res.accessToken, { path: "/" });
+    //     window.location.href = "/";
+    //   }
+    // })
+    window.location.href = "/login";
+  }
+
 	return <Wrapper>
 		<Box>
 			<Title>회원가입</Title>
 			<InputBox>
 				<ITitle>아이디</ITitle>
-				<Input placeholder="아이디를 입력하세요" />
+				<Input name="userId" placeholder="아이디를 입력하세요" />
+				<Line />
+			</InputBox>
+      <InputBox>
+				<ITitle>계정명</ITitle>
+				<Input name="username" placeholder="계정명을 입력하세요" />
+				<Line />
+			</InputBox>
+      <InputBox>
+				<ITitle>이메일</ITitle>
+				<Input name="userEmail" placeholder="이메일을 입력하세요" />
 				<Line />
 			</InputBox>
 			<InputBox>
 				<ITitle>비밀번호</ITitle>
-				<Input placeholder="비밀번호를 입력하세요" type="password" />
+				<Input name="password" placeholder="비밀번호를 입력하세요" type="password" />
 				<Line />
 			</InputBox>
 			<InputBox>
