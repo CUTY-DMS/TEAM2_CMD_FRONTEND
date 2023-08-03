@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnnounceWrite } from "../Pages/AnnounceWrite";
 import { StudentDetail } from "../Pages/StudentDetail";
 import { Announcement } from "../Pages/Announcement";
 import { StudentList } from "../Pages/StudentList";
+import { MyProfile } from "../Pages/MyProfile";
 import { SignUp } from "../Pages/SignUp";
 import { Login } from "../Pages/Login";
 import { Main } from "../Pages/Main";
@@ -19,6 +20,7 @@ export const Router = () => {
         <Route path="/AnnounceWrite" element={cookies.accessToken? <AnnounceWrite /> : <Login />} />
         <Route path="/StudentDetail" element={cookies.accessToken? <StudentDetail /> : <Login />} />
         <Route path="/StudentList" element={cookies.accessToken? <StudentList /> : <Login />} />
+        <Route path="/MyProfile" element={cookies.accessToken? <MyProfile /> : <Login />} />
       </Route>
       <Route path="/Login" element={!cookies.accessToken? <Login /> : undefined} />
       <Route path="/SignUp" element={!cookies.accessToken? <SignUp /> : undefined} />
