@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnnounceWrite } from "../Pages/AnnounceWrite";
 import { StudentDetail } from "../Pages/StudentDetail";
 import { Announcement } from "../Pages/Announcement";
@@ -7,19 +7,23 @@ import { SignUp } from "../Pages/SignUp";
 import { Login } from "../Pages/Login";
 import { Main } from "../Pages/Main";
 import { Layout } from "./Layout";
+import { MyProfile } from "../Pages/MyProfile";
 
 export const Router = () => {
-  return <BrowserRouter>
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Main />} />
-        <Route path="/Announcement" element={<Announcement />} />
-        <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
-        <Route path="/StudentDetail" element={<StudentDetail />} />
-        <Route path="/StudentList" element={<StudentList />} />
-      </Route>
-      <Route path="/Login" element={<Login />} />
-      <Route path="/SignUp" element={<SignUp />} />
-    </Routes>
-  </BrowserRouter>
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Main />} />
+          <Route path="/Announcement" element={<Announcement />} />
+          <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
+          <Route path="/StudentDetail" element={<StudentDetail />} />
+          <Route path="/StudentList" element={<StudentList />} />
+          <Route path="/MyProfile" element={<MyProfile />} />
+        </Route>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
