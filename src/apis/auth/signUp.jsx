@@ -1,5 +1,5 @@
 import { baseUrl } from "../baseUrl";
-import { axios } from "axios";
+import axios from "axios";
 
 export const signUp = (data) => {
   try {

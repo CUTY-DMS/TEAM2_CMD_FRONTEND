@@ -10,7 +10,7 @@ export const Login = () => {
     userId: "",
     userName: "",
     passWord: ""
-  })
+  });
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -18,85 +18,83 @@ export const Login = () => {
   }
 
   const handleLogin = () => {
-    // signIn(data).then(res => {
-    //   if(res) { 
-    //     setCookie("accessToken", res.accessToken, { path: "/" });
-    //     window.location.href = "/";
-    //   }
-    // })
-    setCookie("accessToken", "sibal", { path: "/" });
-    window.location.href = "/";
+    signIn(data).then(res => {
+      if(res) { 
+        setCookie("accessToken", res.accessToken, { path: "/" });
+        window.location.href = "/";
+      }
+    })
   }
 
-	return <Wrapper>
-		<Box>
-			<Title>로그인</Title>
-			<InputBox>
-				<ITitle>아이디</ITitle>
-				<Input name="userId" placeholder="아이디를 입력하세요" onChange={handleChange} />
-				<Line />
-			</InputBox>
-			<InputBox>
-				<ITitle>계정명</ITitle>
-				<Input name="userName" placeholder="계정 이름을 입력하세요" onChange={handleChange} />
-				<Line />
-			</InputBox>
+  return <Wrapper>
+	<Box>
+	  <Title>로그인</Title>
+	    <InputBox>
+		  <ITitle>아이디</ITitle>
+		  <Input name="userId" placeholder="아이디를 입력하세요" onChange={handleChange} />
+		  <Line />
+		</InputBox>
+		<InputBox>
+		  <ITitle>계정명</ITitle>
+		  <Input name="userName" placeholder="계정 이름을 입력하세요" onChange={handleChange} />
+		  <Line />
+		</InputBox>
       <InputBox>
-				<ITitle>비밀번호</ITitle>
-				<Input name="password" placeholder="비밀번호를 입력하세요" type="password" onChange={handleChange} />
-				<Line />
-				<NoAccount>아직 계정이 없으신가요?<CButton to="/SignUp">회원가입</CButton></NoAccount>
-			</InputBox>
-			<Button onClick={handleLogin}>로그인</Button>
-		</Box>
+	  	  <ITitle>비밀번호</ITitle>
+	  	  <Input name="password" placeholder="비밀번호를 입력하세요" type="password" onChange={handleChange} />
+	  	  <Line />
+	  	  <NoAccount>아직 계정이 없으신가요?<CButton to="/SignUp">회원가입</CButton></NoAccount>
+	    </InputBox>
+	    <Button onClick={handleLogin}>로그인</Button>
+	  </Box>
 	</Wrapper>
 }
 
 const Wrapper = styled.div`
-	display: flex;
+  display: flex;
   align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100vh;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 `
 
 const Box = styled.div`
-	display: flex;
+  display: flex;
   align-items: center;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 50%;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
   height: 770px;
   max-width: 590px;
   padding-top: 50px;
   padding-bottom: 90px;
   background: white;
-	border-radius: 10px;
+  border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `
 
 const InputBox = styled.div`
   gap: 5px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
   max-width: 400px;
 `
 
 const Line = styled.div`
-	width: 100%;
-	border-top: 2px solid #585858;
+  width: 100%;
+  border-top: 2px solid #585858;
 `
 
 const Title = styled.h1`
-	font-size: 30px;
-	font-weight: bolder;
+  font-size: 30px;
+  font-weight: bolder;
 `
 
 const ITitle = styled.h1`
-	color: #585858;
+  color: #585858;
   font-size: small;
   font-weight: bolder;
 `
@@ -104,12 +102,12 @@ const ITitle = styled.h1`
 const Input = styled.input` width: 100%; `
 
 const NoAccount = styled.h1`
-	color: #585858;
+  color: #585858;
   font-size: small;
 `
 
 const CButton = styled(Link)`
-	cursor: pointer;
+  cursor: pointer;
   background: white;
   color: black;
   font-size: small;
@@ -117,14 +115,14 @@ const CButton = styled(Link)`
 `
 
 const Button = styled.button`
-	width: 70%;
-	height: 40px;
+  width: 70%;
+  height: 40px;
   max-width: 300px;
   cursor: pointer;
   margin-top: 160px;
-	border-radius: 15px;
+  border-radius: 15px;
   background: #ffcf5e;
-	box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
   font-size: medium;
-	font-weight: bolder;
+  font-weight: bolder;
 `
