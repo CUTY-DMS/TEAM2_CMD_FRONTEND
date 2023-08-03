@@ -1,40 +1,32 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-const Announce = ({title, date}) => {
-  return (
-    <Wrapper>
-      <Title>{title}</Title>
-      <Date>{date}</Date>
-    </Wrapper>
-  );
-};
-
-export default Announce;
+export const Announce = ({title, date}) => {
+  return <Wrapper>
+    <Title>{title}</Title>
+    <Date>{date}</Date>
+  </Wrapper>
+}
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 1200px;
+  width: 100%;
   height: 155px;
-  background-color: white;
+  cursor: pointer;
+  background: white;
   border-radius: 0px 20px 20px 20px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+`
 
 const Title = styled.h1`
-  margin: 0;
-  margin-left: 130px;
+  margin-left: 10%;
   font-size: 40px;
   font-weight: 400;
-`;
+`
 
-const Date = styled.h1`
-  margin: 0;  
-  margin-left: 130px;
+const Date = styled.h1` 
+  margin-left: 10%;
   font-size: 20px;
   font-weight: lighter;
 `;

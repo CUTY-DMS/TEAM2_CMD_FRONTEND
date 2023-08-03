@@ -1,28 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./Pages/Main";
-import Announcement from "./Pages/Announcement";
-import AnnounceWrite from "./Pages/AnnounceWrite";
-import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-import StudentDetail from "./Pages/StudentDetail";
-import StudentList from "./Pages/StudentList";
-import SpMain from "./Pages/StudyPlate/Main";
+import { GlobalStyle } from './css/GlobalStyle';
+import { Router } from './router/Router';
+import React from 'react';
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/Announcement" element={<Announcement />} />
-        <Route path="/AnnounceWrite" element={<AnnounceWrite />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/StudentDetail" element={<StudentDetail />} />
-        <Route path="/StudentList" element={<StudentList />} />
-        <Route path="/StudyPlate/" element={<SpMain />} />
-      </Routes>
-    </BrowserRouter>
-  );
+export const App = () => {
+  return <>
+    <GlobalStyle />
+    <Router />
+  </>
 }
-
-export default App;
