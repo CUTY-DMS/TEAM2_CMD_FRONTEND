@@ -1,23 +1,53 @@
 import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
-import React from "react";
+import React, { useState } from "react";
+import { signIn } from "../apis/auth/signIn";
+import { useCookies } from "react-cookie";
 
 export const Login = () => {
+  const [, setCookie] = useCookies();
+  const [data, setData] = useState({
+    userId: "",
+    userName: "",
+    passWord: ""
+  })
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setData({...data, [name]: value});
+  }
+
+  const handleLogin = () => {
+    // signIn(data).then(res => {
+    //   if(res) { 
+    //     setCookie("accessToken", res.accessToken, { path: "/" });
+    //     window.location.href = "/";
+    //   }
+    // })
+    setCookie("accessToken", "sibal", { path: "/" });
+    window.location.href = "/";
+  }
+
 	return <Wrapper>
 		<Box>
 			<Title>로그인</Title>
 			<InputBox>
 				<ITitle>아이디</ITitle>
-				<Input placeholder="아이디를 입력하세요" />
+				<Input name="userId" placeholder="아이디를 입력하세요" onChange={handleChange} />
 				<Line />
 			</InputBox>
 			<InputBox>
+				<ITitle>계정명</ITitle>
+				<Input name="userName" placeholder="계정 이름을 입력하세요" onChange={handleChange} />
+				<Line />
+			</InputBox>
+      <InputBox>
 				<ITitle>비밀번호</ITitle>
-				<Input placeholder="비밀번호를 입력하세요" type="password" />
+				<Input name="password" placeholder="비밀번호를 입력하세요" type="password" onChange={handleChange} />
 				<Line />
 				<NoAccount>아직 계정이 없으신가요?<CButton to="/SignUp">회원가입</CButton></NoAccount>
 			</InputBox>
-			<Button>로그인</Button>
+			<Button onClick={handleLogin}>로그인</Button>
 		</Box>
 	</Wrapper>
 }

@@ -1,9 +1,9 @@
 import { Header } from '../Components/Header';
 import { Outlet } from 'react-router-dom';
 
-export const Layout = () => {
+export const Layout = ({ Layout }) => {
   return <>
-    <Header />
+    { Layout? <Header /> : undefined }
     <Outlet />
   </>
 }
