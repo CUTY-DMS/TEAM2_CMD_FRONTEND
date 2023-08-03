@@ -1,57 +1,44 @@
+import { styled } from "styled-components";
 import React from "react";
-import styled from "styled-components";
-import Nav from "../Components/Nav";
 
-function StudentDetail() {
-  return (
-    <Body>
-      <Nav />
-      <Box>
-        <Head>
-          <Logo src="/imgs/Logo.svg" alt="" />
-          <Name>한건희</Name>
-        </Head>
-      </Box>
-    </Body>
-  );
+export const StudentDetail = () => {
+  return <Wrapper>
+    <Box>
+      <Head>
+        <img src="/imgs/Logo.svg" alt="" width="80" height="60"/>
+        <Name>한건희</Name>
+      </Head>
+    </Box>
+  </Wrapper>
 }
 
-export default StudentDetail;
-
-const Body = styled.body`
+const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0px;
-  background: #ffcf5e;
-`;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 80px);
+`
 
 const Box = styled.div`
   width: 90%;
-  max-width: 1230px;
   height: 650px;
+  max-width: 1230px;
+  background: white;
+  padding-top: 50px;
+  padding-left: 100px;
   border-radius: 30px;
-  background-color: white;
-  margin-top: 80px;
-`;
+  box-sizing: border-box;
+`
 
 const Head = styled.div`
+  gap: 20px;
   display: flex;
-  margin-top: 50px;
-`;
-const Logo = styled.img`
-  display: flex;
-  width: 80px;
-  height: 60px;
-  padding-right: 40px;
-  padding-left: 100px;
-`;
-const Name = styled.div`
+  align-items: center;
+`
+
+const Name = styled.h1`
   font-size: xx-large;
-  font-weight: bold;
-  margin-top: 5px;
-`;
+  font-weight: bolder;
+`

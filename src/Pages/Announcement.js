@@ -1,72 +1,49 @@
-import React from 'react';
-import styled from 'styled-components';
-import Nav from '../Components/Nav';
-import Announce from '../Components/Annonce';
+import { Announce } from '../Components/Annonce';
+import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-function Announcement() {
-
-    const noMargin = { margin: 0 }
-    const disFlex = {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center"
-    }
-
-    return (
-        <Wrapper style={disFlex}>
-            <Nav />
-            <Announcements style={disFlex}>
-                <Write>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style={noMargin}>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12C0 11.4477 0.447715 11 1 11H23C23.5523 11 24 11.4477 24 12C24 12.5523 23.5523 13 23 13H1C0.447715 13 0 12.5523 0 12Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C12.5523 0 13 0.447715 13 1V23C13 23.5523 12.5523 24 12 24C11.4477 24 11 23.5523 11 23V1C11 0.447715 11.4477 0 12 0Z" fill="black"/>
-                    </svg>
-                    <StyledLink style={noMargin} to="/AnnounceWrite"><h1>글쓰기</h1></StyledLink>
-                </Write>
-                <Announce title="대충 제목들어갈 부분" date="2022.08.22 오전 12:48" />
-                <Announce title="대충 제목들어갈 부분" date="2022.08.22 오전 12:48" />
-                <Announce title="대충 제목들어갈 부분" date="2022.08.22 오전 12:48" />
-            </Announcements>
-        </Wrapper>
-    )
+export const Announcement = () => {
+  return <Wrapper>
+    <Announcements>
+      <Write to="/AnnounceWrite">
+        <img src="/imgs/Plus.svg" alt="img" />
+        <h1>글 작성하기</h1>
+      </Write>
+      <Announce title="대충 제목들어갈 부분" date="2022.08.22 오전 12:48" />
+    </Announcements>
+  </Wrapper>
 }
 
-export default Announcement;
-
 const Wrapper = styled.div`
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-`;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: 70px;
+`
 
 const Announcements = styled.div`
-    gap: 30px;
-    margin-top: 70px;
-    width: 1200px;
-`;
+  gap: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 65%;
+`
 
-const Write = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: flex-end;
-    gap: 10px;
-    padding: 5px;
-    font-size: 15px;
-    font-weight: lighter;
-    transition: 0.2s all;
-    &:hover { 
-      cursor: pointer; 
-      background-color: #FFC744;
-      border-radius: 15px; 
-    }
-`;
-
-const StyledLink = styled(Link)`
-  &:link, &:visited, &:hover { 
-    text-decoration-line: none; 
-    cursor: pointer; 
-    color: #000; 
-  }
-`;
+const Write = styled(Link)`
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center; 
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 15px;
+  color: black; 
+  font-size: 15px; 
+  &:hover { background: #FFC744; }
+`
