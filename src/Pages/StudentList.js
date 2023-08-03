@@ -3,27 +3,29 @@ import { styled } from "styled-components";
 import React from "react";
 
 export const StudentList = () => {
-  return <Wrapper>
-    <Line>
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-      <User Class="1101" Name="김이름" />
-    </Line>
-  </Wrapper>
-}
+  return (
+    <Wrapper>
+      <Line>
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+        <User Class="1101" Name="김이름" />
+      </Line>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   gap: 15px;
@@ -31,7 +33,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 15px;
-`
+`;
 
 const Line = styled.div`
   width: 60%;
@@ -41,4 +43,4 @@ const Line = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 15px;
-`
+`;
