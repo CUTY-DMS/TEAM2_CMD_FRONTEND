@@ -1,26 +1,34 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
+// import { getAdminInfo } from "../apis/get/getAdminInfo";
 
 export const Header = () => {
-  console.log(window.location);
-  return (
-    <Wrapper>
-      <Left>
-        <img src="/imgs/Logo.svg" alt="" width="100" height="80px" />
-        <StyledLink to="/">시간표</StyledLink>
-        <StyledLink to="/Announcement">공지사항</StyledLink>
-        <StyledLink to="/StudentList">학생정보</StyledLink>
-      </Left>
-      <Right>
-        <UserInfo>
-          <UserName to="/MyProfile">1-2 최수장</UserName>
-          <Logout to="/Login">{"〈"} 로그아웃</Logout>
-        </UserInfo>
-        <RightBar />
-      </Right>
-    </Wrapper>
-  );
-};
+  // getAdminInfo().then(res => {
+  //   console.log(res);
+  // })
+
+  const handleLogOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    window.location.href = "/Login";
+  }
+
+  return <Wrapper>
+    <Left>
+      <img src="/imgs/Logo.svg" alt="" width="100" height="80px" />
+      <StyledLink to="/">시간표</StyledLink>
+      <StyledLink to="/Announcement">공지사항</StyledLink>
+      <StyledLink to="/StudentList">학생정보</StyledLink>
+    </Left>
+    <Right>
+      <UserInfo>
+        <UserName to="/MyProfile">1-2 최수장</UserName>
+        <Logout onClick={handleLogOut}>{"〈"} 로그아웃</Logout>
+      </UserInfo>
+      <RightBar />
+    </Right>
+  </Wrapper>
+}
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +68,7 @@ const UserName = styled(Link)`
   font-size: 23px;
 `;
 
-const Logout = styled(Link)`
+const Logout = styled.h1`
   cursor: pointer;
   transition: 0.2s;
   color: gray;
