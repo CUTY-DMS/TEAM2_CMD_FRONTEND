@@ -8,6 +8,7 @@ import { Register } from "../Pages/Register";
 import { Login } from "../Pages/Login";
 import { Main } from "../Pages/Main";
 import { Layout } from "./Layout";
+import { AnnounceRead } from "../Pages/AnnounceRead";
 
 export const Router = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -20,6 +21,7 @@ export const Router = () => {
         <Route path="/StudentDetail" element={accessToken? <StudentDetail /> : <Login />} />
         <Route path="/StudentList" element={accessToken? <StudentList /> : <Login />} />
         <Route path="/MyProfile" element={accessToken? <MyProfile /> : <Login />} />
+        <Route path="/AnnounceRead/:id" element={accessToken? <AnnounceRead /> : <Login />} />
       </Route>
       <Route path="/Login" element={!accessToken? <Login /> : <Main />} />
       <Route path="/SignUp" element={!accessToken? <Register /> : <Main />} />
