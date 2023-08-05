@@ -1,15 +1,15 @@
 import { styled } from "styled-components";
 
-export const TimeTable = ({day, sub1, sub2, sub3, sub4, sub5, sub6, sub7}) => {
+export const TimeTable = ({ Day, Subs }) => {
   return <Wrapper>
-      <h1>{day}</h1>
-    <Subject>{sub1}</Subject>
-    <Subject>{sub2}</Subject>
-    <Subject>{sub3}</Subject>
-    <Subject>{sub4}</Subject>
-    <Subject>{sub5}</Subject>
-    <Subject>{sub6}</Subject>
-    <Subject>{sub7}</Subject>
+    <h1>{Day}</h1>
+    {
+      Subs.map((data, index) => {
+        if(index!==0) {
+          return <Subject key={index}>{data}</Subject>
+        }
+      })
+    }
   </Wrapper>
 }
 

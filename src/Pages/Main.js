@@ -1,23 +1,44 @@
 import { TimeTable } from '../Components/common/TimeTable';
+import { getTimeTable } from '../apis/get/getTimeTable';
+import { getEndDate } from '../utils/getEndDate';
 import { getWeekNumber } from '../utils/getWeekNumber';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import React from 'react';
 
 export const Main = () => {
+  const days = ["월", "화", "수", "목", "금"];
   const date = new Date();
   const month = date.getMonth()+1;
-  const weekNum = getWeekNumber(date);
+  const weekNum = getWeekNumber();
+  const [timeTable, setTimeTable] = useState([]);
+  date.setDate(date.getDate() - (date.getDay() || 7) + 1);
 
-  return <Wrapper>
+  useEffect(() => {
+    let day = Number(`${date.getFullYear()}${(date.getMonth()+1).toString().padStart(2, "0")}${(date.getDate()).toString().padStart(2, "0")}`);
+    for(let i = 0; i<5; i++) {
+      let table = [i];
+      if((day+1)%100 > getEndDate()) { day = day+100-(getEndDate()) }
+      getTimeTable(day.toString(), 1, 3).then(res => {
+        const arr = res.data.hisTimetable ? res.data.hisTimetable[1].row : undefined;
+        for(let j = 0; j<7; j++) { table[j+1] = arr ? arr[j].ITRT_CNTNT : "-" }
+        setTimeTable(timeTable => [...timeTable, table]);
+        day += 1;
+      })
+    }
+  }, []);
+
+  if(timeTable.length===5) {
+    return <Wrapper>
     <Title>2023년 {month}월 {weekNum}주차</Title>
     <Table>
-      <TimeTable day="월" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-      <TimeTable day="화" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-      <TimeTable day="수" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-      <TimeTable day="목" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-      <TimeTable day="금" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
+      {
+        timeTable.sort().map((data, index) => {
+          return <TimeTable key={index} Day={days[index]} Subs={data}/>
+        })
+      }
     </Table>
-  </Wrapper>
+    </Wrapper>
+  }
 }
 
 const Wrapper = styled.div`
