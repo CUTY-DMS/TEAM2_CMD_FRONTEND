@@ -8,10 +8,10 @@ export const Register = () => {
     userId : "",
     password : "",
     username : "",
-    grader : 0,
-    schoolClass : 0,
+    grader : 1,
+    schoolClass : 1,
     userEmail : "",
-    subjectType : "",
+    subjectType : "KOREAN",
     secretKey: ""
   });
   const [check, setCheck] = useState("");
@@ -29,9 +29,8 @@ export const Register = () => {
           window.location.href = "/Login";
         }
       })
-    }
-    else { alert("비밀번호를 확인해주세요."); }
-  }
+    } else { alert("비밀번호를 확인해주세요."); }
+  } 
 
 	return <Wrapper>
 		<Box>
