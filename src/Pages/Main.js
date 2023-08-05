@@ -1,9 +1,10 @@
-import { TimeTable } from '../Components/common/TimeTable';
-import { getTimeTable } from '../apis/get/getTimeTable';
-import { getEndDate } from '../utils/getEndDate';
-import { getWeekNumber } from '../utils/getWeekNumber';
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import { TimeTable } from '../Components/common/TimeTable';
+import { getTimeTable } from '../apis/get/getTimeTable';
+import { getWeekNumber } from '../utils/getWeekNumber';
+import { getEndDate } from '../utils/getEndDate';
+
 
 export const Main = () => {
   const days = ["월", "화", "수", "목", "금"];
