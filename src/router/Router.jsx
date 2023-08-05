@@ -21,8 +21,8 @@ export const Router = () => {
         <Route path="/StudentList" element={accessToken? <StudentList /> : <Login />} />
         <Route path="/MyProfile" element={accessToken? <MyProfile /> : <Login />} />
       </Route>
-      <Route path="/Login" element={!accessToken? <Login /> : undefined} />
-      <Route path="/SignUp" element={!accessToken? <Register /> : undefined} />
+      <Route path="/Login" element={!accessToken? <Login /> : <Main />} />
+      <Route path="/SignUp" element={!accessToken? <Register /> : <Main />} />
     </Routes>
   </BrowserRouter>
 }
