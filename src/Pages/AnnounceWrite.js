@@ -1,14 +1,33 @@
 import { styled } from 'styled-components';
 import React from 'react';
+import { useState } from 'react';
+import { postAnnc } from '../apis/post/postAnnounce';
 
 export const AnnounceWrite = () => {
+  const [data, setData] = useState({
+    title: "",
+    content: ""
+  });
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setData({...data, [name]: value});
+  }
+
+  const handleSubmit = () => {
+    postAnnc(data).then(res => {
+      alert("글이 성공적으로 작성되었습니다.");
+      window.location.href = "/Announcement"
+    })
+  }
+
   return <Wrapper>
     <BoxFlex>
       <Textbox>
-        <Title placeholder="제목"/>
-        <Text rows="25" cols="155" placeholder="내용을 입력해주세요." />
+        <Title name="title" placeholder="제목" onChange={handleChange}/>
+        <Text name="content" rows="25" cols="155" placeholder="내용을 입력해주세요." onChange={handleChange} />
       </Textbox>
-      <FinButton>
+      <FinButton onClick={handleSubmit}>
         <img src="/imgs/Notice.svg" alt="" /> 
         <h1>작성 완료</h1>
       </FinButton>
