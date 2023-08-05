@@ -1,131 +1,127 @@
-import React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { signIn } from "../apis/auth/signIn";
 
-function Login() {
-	return (
-		<Body>
-			<Container>
-				<Title>로그인</Title>
-				<Wrapper>
-					<IPTitle>아이디</IPTitle>
-					<Input placeholder="아이디를 입력하세요.."></Input>
-					<Line></Line>
-				</Wrapper>
-				<Wrapper>
-					<IPTitle>비밀번호</IPTitle>
-					<Input placeholder="비밀번호를 입력하세요.." type="password"></Input>
-					<Line></Line>
-					<AccountBox>
-						<NoAccount>아직 계정이 없으신가요?</NoAccount>
-						<SignUpButton to="/SignUp">회원가입</SignUpButton>
-					</AccountBox>
-				</Wrapper>
-				<LoginButton>로그인</LoginButton>
-			</Container>
-		</Body>
-	);
+export const Login = () => {
+  const [data, setData] = useState({
+    userId: "",
+    userName: "",
+    passWord: ""
+  })
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setData({...data, [name]: value});
+  }
+
+  const handleLogin = () => {
+    signIn(data).then(res => {
+      if(res) { 
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
+        window.location.href = "/";
+      }
+    })
+  }
+
+  return <Wrapper>
+	<Box>
+	  <Title>로그인</Title>
+	    <InputBox>
+		  <ITitle>아이디</ITitle>
+		  <Input name="userId" placeholder="아이디를 입력하세요" onChange={handleChange} />
+		  <Line />
+		</InputBox>
+		<InputBox>
+		  <ITitle>계정명</ITitle>
+		  <Input name="userName" placeholder="계정 이름을 입력하세요" onChange={handleChange} />
+		  <Line />
+		</InputBox>
+      <InputBox>
+	  	  <ITitle>비밀번호</ITitle>
+	  	  <Input name="password" placeholder="비밀번호를 입력하세요" type="password" onChange={handleChange} />
+	  	  <Line />
+	  	  <NoAccount>아직 계정이 없으신가요?<CButton to="/SignUp">회원가입</CButton></NoAccount>
+	    </InputBox>
+	    <Button onClick={handleLogin}>로그인</Button>
+	  </Box>
+	</Wrapper>
 }
 
-export default Login;
-
-const Body = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100vw;
-	height: 100vh;
-	margin: 0;
-	padding: 0px;
-`;
-
-const Container = styled.div`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-direction: column;
-	width: 590px;
-	height: 770px;
-	box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	border-radius: 10px;
-	background: #fff;
-`;
-
-const Title = styled.div`
-	font-size: 30px;
-	font-weight: 1000;
-	padding-top: 50px;
-	padding-bottom: 80px;
-`;
-
 const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 418px;
-	height: 150px;
-`;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+`
 
-const IPTitle = styled.div`
-    font-weight: 700;
-	color: #585858;
-	padding-bottom: 10px;
-	padding-top: 20px;
-`;
-const Input = styled.input`
-	border: none;
-	outline: none;
-	width: 100%;
-`;
+const Box = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  height: 770px;
+  max-width: 590px;
+  padding-top: 50px;
+  padding-bottom: 90px;
+  background: white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`
+
+const InputBox = styled.div`
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+  max-width: 400px;
+`
+
 const Line = styled.div`
-	width: 380px;
-	margin-top: 5px;
-	border-top: 2px solid #585858;
-`;
+  width: 100%;
+  border-top: 2px solid #585858;
+`
 
-const NoAccount = styled.div`
-	display: flex;
-	flex-direction: row;
-	font-size: small;
-	color: #585858;
-`;
-const SignUpButton = styled(Link)`
-	text-decoration-line: none;
-	background-color: white;
-	border: none;
-	color: black;
-	font-weight: bold;
-	font-size: small;
-	cursor: pointer;
-	&:link {
-		color: #000;
-	  	}
-	&:visited {
-		color: #000;
-	}
-	&:hover {
-	  	cursor: pointer;
-	  	color: #000;
-	}
-`;
+const Title = styled.h1`
+  font-size: 30px;
+  font-weight: bolder;
+`
 
-const AccountBox = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding-top: 20px;
-	gap: 5px;
-`;
+const ITitle = styled.h1`
+  color: #585858;
+  font-size: small;
+  font-weight: bolder;
+`
 
-const LoginButton = styled.button`
-	background-color: #ffcf5e;
-	border: none;
-	width: 300px;
-	height: 42px;
-	border-radius: 15px;
-	font-size: medium;
-	font-weight: 700;
-	box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
-    cursor: pointer;
-    margin-top: 160px;
-`;
+const Input = styled.input` width: 100%; `
+
+const NoAccount = styled.h1`
+  color: #585858;
+  font-size: small;
+`
+
+const CButton = styled(Link)`
+  cursor: pointer;
+  background: white;
+  color: black;
+  font-size: small;
+  font-weight: bold;
+`
+
+const Button = styled.button`
+  width: 70%;
+  height: 40px;
+  max-width: 300px;
+  cursor: pointer;
+  margin-top: 160px;
+  border-radius: 15px;
+  background: #ffcf5e;
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
+  font-size: medium;
+  font-weight: bolder;
+`

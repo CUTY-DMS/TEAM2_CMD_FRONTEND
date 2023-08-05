@@ -1,51 +1,60 @@
-import React from 'react';
-import styled from 'styled-components';
-import Nav from '../Components/Nav';
-import TimeTable from '../Components/TimeTable'
-const date = new Date();
+import { TimeTable } from '../Components/common/TimeTable';
+import { getTimeTable } from '../apis/get/getTimeTable';
+import { getEndDate } from '../utils/getEndDate';
+import { getWeekNumber } from '../utils/getWeekNumber';
+import React, { useEffect, useState } from 'react';
+import { styled } from 'styled-components';
 
-function Main() {
-    //함수 출처 : https://gist.github.com/leegeunhyeok/8695aaf29674b098b7da7696e90810bb
-    const getWeekNumber = (dateFrom = new Date()) => {
-        const currentDate = dateFrom.getDate();
-        const startOfMonth = new Date(dateFrom.setDate(1));
-        const weekDay = startOfMonth.getDay();
-        return parseInt(((weekDay - 1) + currentDate) / 7) + 1;
+export const Main = () => {
+  const days = ["월", "화", "수", "목", "금"];
+  const date = new Date();
+  const month = date.getMonth()+1;
+  const weekNum = getWeekNumber();
+  const [timeTable, setTimeTable] = useState([]);
+  date.setDate(date.getDate() - (date.getDay() || 7) + 1);
+
+  useEffect(() => {
+    let day = Number(`${date.getFullYear()}${(date.getMonth()+1).toString().padStart(2, "0")}${(date.getDate()).toString().padStart(2, "0")}`);
+    for(let i = 0; i<5; i++) {
+      let table = [i];
+      if((day+1)%100 > getEndDate()) { day = day+100-(getEndDate()) }
+      getTimeTable(day.toString(), 1, 3).then(res => {
+        const arr = res.data.hisTimetable ? res.data.hisTimetable[1].row : undefined;
+        for(let j = 0; j<7; j++) { table[j+1] = arr ? arr[j].ITRT_CNTNT : "-" }
+        setTimeTable(timeTable => [...timeTable, table]);
+        day += 1;
+      })
     }
-    const month = date.getMonth()+1;
-    const weekNum = getWeekNumber(date);
+  }, []);
 
-    return (
-        <Wrapper>
-            <Nav />
-            <Title>2023년 {month}월 {weekNum}주차</Title>
-            <Table>
-                <TimeTable day="월" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-                <TimeTable day="화" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-                <TimeTable day="수" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-                <TimeTable day="목" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-                <TimeTable day="금" sub1="국어" sub2="수학" sub3="사회" sub4="과학" sub5="영어" sub6="프로그래밍" sub7="컴퓨터구조"/>
-            </Table>
-        </Wrapper>
-    )
+  if(timeTable.length===5) {
+    return <Wrapper>
+    <Title>2023년 {month}월 {weekNum}주차</Title>
+    <Table>
+      {
+        timeTable.sort().map((data, index) => {
+          return <TimeTable key={index} Day={days[index]} Subs={data}/>
+        })
+      }
+    </Table>
+    </Wrapper>
+  }
 }
 
-export default Main;
-
 const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-`;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 80px);
+`
 
 const Table = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-`;
+  gap: 25px;
+  display: flex;
+  justify-content: center;
+`
 
-const Title = styled.h1`
-    font-size: 40px;
-`;
+const Title = styled.h1` font-size: 40px; `
