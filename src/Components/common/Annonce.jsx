@@ -1,9 +1,12 @@
 import { styled } from "styled-components";
 
-export const Announce = ({title, date}) => {
-  return <Wrapper>
+export const Announce = ({id, title}) => {
+  const handleClick = () => {
+    window.location.href = `/AnnounceRead/${id}`
+  }
+
+  return <Wrapper onClick={handleClick}>
     <Title>{title}</Title>
-    <Date>{date}</Date>
   </Wrapper>
 }
 
@@ -24,9 +27,3 @@ const Title = styled.h1`
   font-size: 40px;
   font-weight: 400;
 `
-
-const Date = styled.h1` 
-  margin-left: 10%;
-  font-size: 20px;
-  font-weight: lighter;
-`;

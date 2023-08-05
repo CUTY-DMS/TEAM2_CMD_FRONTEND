@@ -1,47 +1,40 @@
-import { Announce } from "../Components/Annonce";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { getNotiList } from "../apis/get/getNotiList";
+import { Announce } from "../Components/common/Annonce";
 
 export const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://52.65.160.119:8080/notification/list")
-      .then((response) => {
-        setAnnouncements(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching announcements:", error);
-      });
-  }, []);
+    getNotiList().then(res => {
+      if(res.data.length!==0) {
+        setAnnouncements(announcements => [...announcements, res.data])
+      }
+    })
+  }, [])
 
-  return (
-    <Wrapper>
-      <Announcements>
-        <Write to="/AnnounceWrite">
-          <img src="/imgs/Plus.svg" alt="img" />
-          <h1>글 작성하기</h1>
-        </Write>
-        {announcements.map((announcement, index) => (
-          <Announce
-            key={index}
-            id={`announce-${index}`}
-            title={announcement.title}
-            date={announcement.expiredAt}
-          />
-        ))}
-      </Announcements>
-    </Wrapper>
-  );
-};
-
-const axios = require("axios");
-
-axios.get("http://52.65.160.119:8080/notification/list", function (req, res) {
-  res.send("Hello World");
-});
+  if(announcements.length!==0) {
+    return (
+      <Wrapper>
+        <Announcements>
+          <Write to="/AnnounceWrite">
+            <img src="/imgs/Plus.svg" alt="img" />
+            <h1>글 작성하기</h1>
+          </Write>
+          {announcements[0].map((announcement, index) => (
+            <Announce
+              key={index}
+              id={index}
+              title={announcement.title}
+            />
+          ))}
+        </Announcements>
+      </Wrapper>
+    )
+  }
+}
 
 const Wrapper = styled.div`
   gap: 20px;
