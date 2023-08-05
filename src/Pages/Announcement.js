@@ -1,4 +1,4 @@
-import { Announce } from '../Components/Annonce';
+import { Announce } from '../Components/common/Annonce';
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
 import React from 'react';
