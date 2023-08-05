@@ -5,7 +5,7 @@ export const AnnounceRead = () => {
   return <Wrapper>
     <BoxFlex>
       <Textbox>
-        <Title></Title>
+        <Title value="" readOnly />
         <Text value="" readOnly/>
       </Textbox>
     </BoxFlex>
@@ -38,7 +38,7 @@ const Textbox = styled.h1`
   border-radius: 50px;
 `
 
-const Title = styled.h1`
+const Title = styled.textarea`
   width: 95%;
   height: 40px;
   margin-top: 40px;
