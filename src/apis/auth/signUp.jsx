@@ -1,9 +1,10 @@
 import { baseUrl } from "../baseUrl";
 import axios from "axios";
 
-export const signUp = (data) => {
+export const signUp = async (data) => {
   try {
-    const res = axios.post(`${baseUrl}/signup/admin`, data);
-    return res;
-  } catch(err) { alert(err) }
+    return await axios.post(`${baseUrl}/signup/admin`, data);
+  } catch(err) {
+    alert(err);
+  }
 }

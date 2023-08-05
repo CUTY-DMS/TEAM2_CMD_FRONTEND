@@ -2,15 +2,13 @@ import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import { signIn } from "../apis/auth/signIn";
-import { useCookies } from "react-cookie";
 
 export const Login = () => {
-  const [, setCookie] = useCookies();
   const [data, setData] = useState({
     userId: "",
     userName: "",
     passWord: ""
-  });
+  })
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -20,7 +18,8 @@ export const Login = () => {
   const handleLogin = () => {
     signIn(data).then(res => {
       if(res) { 
-        setCookie("accessToken", res.accessToken, { path: "/" });
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
         window.location.href = "/";
       }
     })

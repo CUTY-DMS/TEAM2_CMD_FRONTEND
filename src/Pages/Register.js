@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import { signUp } from "../apis/auth/signUp";
 
-export const SignUp = () => {
+export const Register = () => {
   const [data, setData] = useState({
     userId : "",
     password : "",
@@ -76,21 +76,21 @@ export const SignUp = () => {
 			</InputBox>
       <InputBox>
         <OptionBox>
-          <select name="grader" onChange={handleChange} value="None">
-            <option disabled value="None">학년</option>
+          <select name="grader" onChange={handleChange}>
+            <option disabled>학년</option>
             <option value={1}>1학년</option>
             <option value={2}>2학년</option>
             <option value={3}>3학년</option>
           </select>
-          <select name="schoolClass" onChange={handleChange} value="None">
-            <option disabled value="None">반</option>
+          <select name="schoolClass" onChange={handleChange}>
+            <option disabled>반</option>
             <option value={1}>1반</option>
             <option value={2}>2반</option>
             <option value={3}>3반</option>
             <option value={4}>4반</option>
           </select>
-          <select name="subjectType" onChange={handleChange} value="None">
-            <option disabled value="None">과목</option>
+          <select name="subjectType" onChange={handleChange}>
+            <option disabled>과목</option>
             <option value="KOREAN">국어</option>
             <option value="MATH">수학</option>
             <option value="SOCIAL">사회</option>
