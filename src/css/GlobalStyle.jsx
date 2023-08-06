@@ -4,18 +4,13 @@ export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    border: none;
     font-family: inter;
     text-decoration-line: none;
-  }
-  a {
-    font-weight: bolder;
-  }
-  input, textarea {
-    border: none;
+  } input, textarea {
     resize: none;
     outline: none;
-  }
-  button {
-    border: none;
-  }
+  } a { 
+    font-weight: bolder; 
+  } 
 `;
