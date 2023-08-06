@@ -1,13 +1,12 @@
 import { styled } from 'styled-components';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { postAnnc } from '../apis/post/postAnnounce';
 
 export const AnnounceWrite = () => {
   const [data, setData] = useState({
     title: "",
     content: ""
-  });
+  })
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -16,8 +15,10 @@ export const AnnounceWrite = () => {
 
   const handleSubmit = () => {
     postAnnc(data).then(res => {
-      alert("글이 성공적으로 작성되었습니다.");
-      window.location.href = "/Announcement"
+      if(res) {
+        alert("글이 성공적으로 작성되었습니다.");
+        window.location.href = "/Announcement";
+      }
     })
   }
 

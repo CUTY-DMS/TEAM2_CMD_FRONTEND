@@ -1,39 +1,39 @@
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
 import { getNotiList } from "../apis/get/getNotiList";
-import { Announce } from "../Components/common/Annonce";
+import { Announce } from "../Components/Annonce";
 
 export const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
     getNotiList().then(res => {
-      if(res.data.length!==0) {
-        setAnnouncements(announcements => [...announcements, res.data])
-      }
+      if(res.length!==1) setAnnouncements(announcements => [...announcements, res.data])
     })
   }, [])
 
-  if(announcements.length!==0) {
-    return (
-      <Wrapper>
-        <Announcements>
-          <Write to="/AnnounceWrite">
-            <img src="/imgs/Plus.svg" alt="img" />
-            <h1>글 작성하기</h1>
-          </Write>
-          {announcements[0].map((announcement, index) => (
+  return <Wrapper>
+    <Announcements>
+      <Write to="/AnnounceWrite">
+        <img src="/imgs/Plus.svg" alt="img" />
+        <h1>글 작성하기</h1>
+      </Write>
+      {
+        announcements.length!==0 ? ( 
+          announcements[0].map((announcement, index) => (
             <Announce
               key={index}
               id={index}
               title={announcement.title}
             />
-          ))}
-        </Announcements>
-      </Wrapper>
-    )
-  }
+          ))
+        ) : ( 
+          <h1>로딩중...</h1>
+        )
+      }
+    </Announcements>
+  </Wrapper>
 }
 
 const Wrapper = styled.div`

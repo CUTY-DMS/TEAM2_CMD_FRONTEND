@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { Link } from 'react-router-dom';
 import React, { useState } from "react";
+import { getAdminInfo } from "../apis/get/getAdminInfo";
 import { signIn } from "../apis/auth/signIn";
 
 export const Login = () => {
@@ -17,11 +18,13 @@ export const Login = () => {
 
   const handleLogin = () => {
     signIn(data).then(res => {
-      if(res) { 
-        localStorage.setItem("accessToken", res.data.accessToken);
-        localStorage.setItem("refreshToken", res.data.refreshToken);
-        window.location.href = "/";
-      }
+      localStorage.setItem("accessToken", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      getAdminInfo().then(res => {
+        const userInfo = res.data
+        localStorage.setItem("userInfo", [userInfo.username, userInfo.grader, userInfo.schoolClass])
+      })
+      window.location.href = "/";
     })
   }
 
