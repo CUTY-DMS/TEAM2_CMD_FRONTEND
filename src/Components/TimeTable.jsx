@@ -5,9 +5,7 @@ export const TimeTable = ({ Day, Subs }) => {
     <h1>{Day}</h1>
     {
       Subs.map((data, index) => {
-        if(index!==0) {
-          return <Subject key={index}>{data}</Subject>
-        }
+        if(index!==0) return <Subject key={index-1}>{data}</Subject>
       })
     }
   </Wrapper>
