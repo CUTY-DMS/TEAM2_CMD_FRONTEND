@@ -9,13 +9,18 @@ export const Header = () => {
   useEffect(() => {
     if(!localStorage.getItem("userInfo")) {
       getAdminInfo().then(res => {
-        const data = res.data;
-        data.map(data => setUserInfo(userInfo => [...userInfo, data]));
-        localStorage.setItem("userInfo", [res.data.username, res.data.subjectType, res.data.grader, res.data.schoolClass]);
+        let data = res.data;
+        data = Object.values(data).sort();
+        data.map(data => { 
+          setUserInfo(userInfo => [...userInfo, data]) 
+        });
+        localStorage.setItem("userInfo", [res.data.grader, res.data.schoolClass, res.data.subjectType, res.data.username]);
       })
     } else {
-      const data = (localStorage.getItem("userInfo")).split(',');
-      data.map(data => setUserInfo(userInfo => [...userInfo, data]));
+      const data = localStorage.getItem("userInfo").split(',');
+      data.map(data => { 
+        setUserInfo(userInfo => [...userInfo, data]) 
+      });
     }
   }, [])
 
@@ -37,7 +42,7 @@ export const Header = () => {
       <UserInfo>
         {
           userInfo.length!==0
-          ? <UserName to="/MyProfile">{userInfo[2]}-{userInfo[3]} {userInfo[0]}</UserName>
+          ? <UserName to="/MyProfile">{userInfo[0]}-{userInfo[1]} {userInfo[3]}</UserName>
           : <UserName to="">0-0 아무개</UserName>
         }
         <Logout onClick={handleLogOut}>{"〈"} 로그아웃</Logout>
