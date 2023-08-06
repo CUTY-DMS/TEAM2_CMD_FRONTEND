@@ -1,12 +1,26 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import React, { useState } from 'react';
+import { getNotiDetail } from '../apis/get/getNotiDetail';
 import { postAnnc } from '../apis/post/postAnnounce';
 
-export const AnnounceWrite = () => {
+export const AnnounceEdit = () => {
+  const { id } = useParams();
   const [data, setData] = useState({
     title: "",
     content: ""
-  })
+  });
+
+  useEffect(() => {
+    getNotiDetail(id).then(res => {
+      if(res) {
+        setData({
+          title: res.data.title,
+          content: res.data.content
+        })
+      }
+    })
+  }, [])
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -15,18 +29,16 @@ export const AnnounceWrite = () => {
 
   const handleSubmit = () => {
     postAnnc(data).then(res => {
-      if(res) {
-        alert("글이 성공적으로 작성되었습니다.");
-        window.location.href = "/Announcement";
-      }
+      alert("글이 성공적으로 수정되었습니다.");
+      window.location.href = "/Announcement";
     })
   }
 
   return <Wrapper>
     <BoxFlex>
       <Textbox>
-        <Title name="title" placeholder="제목" onChange={handleChange}/>
-        <Text name="content" rows="25" cols="155" placeholder="내용을 입력해주세요." onChange={handleChange} />
+        <Title name="title" placeholder="제목" value={data.title} onChange={handleChange}/>
+        <Text name="content" rows="25" cols="155" value={data.content} placeholder="내용을 입력해주세요." onChange={handleChange} />
       </Textbox>
       <FinButton onClick={handleSubmit}>
         <img src="/imgs/Notice.svg" alt="" /> 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const User = ({ Class, Name, To }) => {
   return <Wrapper to={To}>
-    <img src="/imgs/User.svg" alt="img" width="89" height="88" />
+    <img src="/imgs/User.svg" alt="img" width="90" height="90" />
     <UserName>{Class} {Name}</UserName>
   </Wrapper>
 }
