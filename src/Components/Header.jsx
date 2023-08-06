@@ -1,15 +1,28 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
-// import { getAdminInfo } from "../apis/get/getAdminInfo";
+import { useEffect, useState } from "react";
+import { getAdminInfo } from "../apis/get/getAdminInfo";
 
 export const Header = () => {
-  // getAdminInfo().then(res => {
-  //   console.log(res);
-  // })
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    if(!localStorage.getItem("userInfo")) {
+      getAdminInfo().then(res => {
+        const data = res.data;
+        data.map(data => setUserInfo(userInfo => [...userInfo, data]));
+        localStorage.setItem("userInfo", [res.data.username, res.data.subjectType, res.data.grader, res.data.schoolClass]);
+      })
+    } else {
+      const data = (localStorage.getItem("userInfo")).split(',');
+      data.map(data => setUserInfo(userInfo => [...userInfo, data]));
+    }
+  }, [])
 
   const handleLogOut = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userInfo");
     window.location.href = "/Login";
   }
 
@@ -22,7 +35,11 @@ export const Header = () => {
     </Left>
     <Right>
       <UserInfo>
-        <UserName to="/MyProfile">1-2 최수장</UserName>
+        {
+          userInfo.length!==0
+          ? <UserName to="/MyProfile">{userInfo[2]}-{userInfo[3]} {userInfo[0]}</UserName>
+          : <UserName to="">0-0 아무개</UserName>
+        }
         <Logout onClick={handleLogOut}>{"〈"} 로그아웃</Logout>
       </UserInfo>
       <RightBar />
