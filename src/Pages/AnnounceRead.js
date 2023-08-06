@@ -1,12 +1,32 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
-import React from 'react';
+import { getNotiDetail } from '../apis/get/getNotiDetail';
 
 export const AnnounceRead = () => {
+
+  const { id } = useParams();
+  const [data, setData] = useState({
+    title: "",
+    content: ""
+  });
+
+  useEffect(() => {
+    getNotiDetail(id).then(res => {
+      if(res) {
+        setData({
+          title: res.data.title,
+          content: res.data.content
+        })
+      }
+    })
+  }, [])
+
   return <Wrapper>
     <BoxFlex>
       <Textbox>
-        <Title value="" readOnly />
-        <Text value="" readOnly/>
+        <Title value={data.title} readOnly />
+        <Text value={data.content} readOnly/>
       </Textbox>
     </BoxFlex>
   </Wrapper>

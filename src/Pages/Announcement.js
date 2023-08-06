@@ -25,7 +25,7 @@ export const Announcement = () => {
             <Announce
               key={index}
               id={announcement.id}
-              title={announcement.title}
+              title={announcement.title.length >= 20 ? announcement.title.substr(0, 20)+".." : announcement.title}
             />
           ))
         ) : ( 
