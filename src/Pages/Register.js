@@ -10,7 +10,7 @@ export const Register = () => {
     username : "",
     grader : 1,
     schoolClass : 1,
-    userEmail : "",
+    user_email : "",
     subjectType : "KOREAN",
     secretKey: ""
   });
