@@ -1,3 +1,4 @@
+import { deleteAnnc } from "../apis/post/deleteAnnounce";
 import { styled } from "styled-components";
 
 export const Announce = ({id, title}) => {
@@ -10,7 +11,14 @@ export const Announce = ({id, title}) => {
   }
 
   const handleDelete = () => {
-    
+    if(window.confirm("정말 삭제하시겠습니까?")) {
+      deleteAnnc(id).then(res => {
+        if(res) {
+          alert("삭제되었습니다");
+          window.location.reload();
+        }
+      })
+    }
   }
 
   return <Wrapper onClick={handleClick}>

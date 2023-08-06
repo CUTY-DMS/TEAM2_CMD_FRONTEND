@@ -9,7 +9,7 @@ export const Announcement = () => {
 
   useEffect(() => {
     getNotiList().then(res => {
-      if(res.length!==1) setAnnouncements(announcements => [...announcements, res.data])
+      if(res) setAnnouncements(announcements => [...announcements, res.data])
     })
   }, [])
 
@@ -24,7 +24,7 @@ export const Announcement = () => {
           announcements[0].map((announcement, index) => (
             <Announce
               key={index}
-              id={index}
+              id={announcement.id}
               title={announcement.title}
             />
           ))

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { getNotiDetail } from '../apis/get/getNotiDetail';
-import { postAnnc } from '../apis/post/postAnnounce';
+import { patchAnnc } from '../apis/post/patchAnnounce';
 
 export const AnnounceEdit = () => {
   const { id } = useParams();
@@ -28,9 +28,14 @@ export const AnnounceEdit = () => {
   }
 
   const handleSubmit = () => {
-    postAnnc(data).then(res => {
-      alert("글이 성공적으로 수정되었습니다.");
-      window.location.href = "/Announcement";
+    patchAnnc(data, id).then(res => {
+      if(res) {
+        console.log(res);
+        alert("글이 성공적으로 수정되었습니다.");
+        window.location.href = "/Announcement";
+      } else {
+        alert("수정에 실패했습니다. 다시 시도해주세요.")
+      }
     })
   }
 
