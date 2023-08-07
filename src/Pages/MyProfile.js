@@ -1,14 +1,44 @@
 import { styled } from "styled-components";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import EditProfile from "./EditProfile";
 
 export const MyProfile = () => {
+  const [userInfo, setUserInfo] = useState([]);
+  const subjectInfo = {
+    "KOREAN": "국어",
+    "ENGLISH": "영어",
+    "MATH": "수학",
+    "SOCIETY": "사회",
+    "SCIENCE": "과학",
+    "HISTORY": "역사",
+    "ART": "미술",
+    "ATHLETIC": "체육",
+    "MUSIC": "음악"
+  }
+
+  useEffect(() => {
+    const data = localStorage.getItem("userInfo").split(',');
+    data.map(data => { 
+      setUserInfo(userInfo => [...userInfo, data]) 
+    });
+  }, [])
+
+  const handleEdit = () => {
+    window.location.href = "/EditProfile";
+  }
+
   return (
     <Wrapper>
       <Body>
         <Box>
           <TeacherWrapper>
-            <img src="/imgs/Logo.svg" alt="" width="80" height="60" />
-            <TeacherName>최수장 선생님</TeacherName>
+            <div>
+              <img src="/imgs/Logo.svg" alt="" width="80" height="60" />
+              <TeacherName>{userInfo[3]} 선생님</TeacherName>
+            </div>
+            <div onClick={handleEdit}>
+              <img src="/imgs/edit.svg" alt="" />
+            </div>
           </TeacherWrapper>
           <Info>
             <Line></Line>
@@ -16,13 +46,11 @@ export const MyProfile = () => {
               <Name>이름</Name>
               <Charger>담당</Charger>
               <Subject>과목</Subject>
-              <Birthday>생년월일</Birthday>
             </InfoTitle>
             <Infos>
-              <NameA>최수장</NameA>
-              <ChargerA>1학년 2반 담임</ChargerA>
-              <SubjectA>프로그래밍</SubjectA>
-              <BirthdayA>2000.01.01</BirthdayA>
+              <NameA>{userInfo[3]}</NameA>
+              <ChargerA>{userInfo[0]}학년 {userInfo[1]}반 담임</ChargerA>
+              <SubjectA>{subjectInfo[userInfo[2]]}</SubjectA>
             </Infos>
             <Img></Img>
           </Info>
@@ -77,13 +105,6 @@ const SubjectA = styled.div`
   color: black;
   font-weight: bold;
 `;
-const BirthdayA = styled.div`
-  margin-left: 80px;
-  margin-top: 40px;
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
-`;
 
 const InfoTitle = styled.div`
   display: flex;
@@ -106,19 +127,31 @@ const Subject = styled.div`
   color: #787878;
   font-weight: bold;
 `;
-const Birthday = styled.div`
-  margin-top: 40px;
-  font-size: 20px;
-  color: #787878;
-  font-weight: bold;
-`;
 
 const TeacherWrapper = styled.div`
-  margin-top: 30px;
   display: flex;
-  flex-direction: row;
-  margin-left: 70px;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 80px;
+  padding-left: 85px;
+  padding-right: 85px;
+  box-sizing: border-box;
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & > div:nth-child(2) {
+    width: 50px;
+    height: 50px;
+    transition: 0.1s;
+    border-radius: 100%;
+    box-shadow: 1px 1px 5px black;
+    &:hover {
+      transition: 0.1s;
+      box-shadow: 2px 2px 10px black;
+    }
+  }
 `;
 const TeacherName = styled.div`
   font-size: 30px;
@@ -148,5 +181,3 @@ const Body = styled.div`
   height: 89vh;
   background-color: #ffcf5e;
 `;
-
-export default MyProfile;
