@@ -41,6 +41,7 @@ export const Login = () => {
 	  	  <Input name="password" placeholder="비밀번호를 입력하세요" type="password" onChange={handleChange} />
 	  	  <Line />
 	  	  <NoAccount>아직 계정이 없으신가요?<CButton to="/SignUp">회원가입</CButton></NoAccount>
+        <NoAccount>혹은 비밀번호를 잊어버리셨나요?<CButton to="/findPassword">비밀번호 찾기</CButton></NoAccount>
 	    </InputBox>
 	    <Button onClick={handleLogin}>로그인</Button>
 	  </Box>

@@ -4,6 +4,7 @@ import { StudentDetail } from "../Pages/StudentDetail";
 import { Announcement } from "../Pages/Announcement";
 import { AnnounceRead } from "../Pages/AnnounceRead";
 import { AnnounceEdit } from "../Pages/AnnounceEdit";
+import { findPassword } from "../Pages/findPassword";
 import { StudentList } from "../Pages/StudentList";
 import { EditProfile } from "../Pages/EditProfile";
 import { MyProfile } from "../Pages/MyProfile";
@@ -29,6 +30,7 @@ export const Router = () => {
       </Route>
       <Route path="/Login" element={!accessToken? <Login /> : <Main />} />
       <Route path="/SignUp" element={!accessToken? <Register /> : <Main />} />
+      <Route path="/findPassword" element={!accessToken? <findPassword /> : <Login />} />
     </Routes>
   </BrowserRouter>
 }
