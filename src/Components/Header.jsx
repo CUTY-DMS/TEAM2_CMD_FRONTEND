@@ -9,11 +9,13 @@ export const Header = () => {
   useEffect(() => {
     if(!localStorage.getItem("userInfo")) {
       getAdminInfo().then(res => {
-        let data = res.data;
-        data = Object.values(data).sort();
-        data.map(data => { 
+        if(res) {
+          let data = res.data;
+          data = Object.values(data).sort();
+          data.map(data => { 
           setUserInfo(userInfo => [...userInfo, data]) 
         });
+        }
         localStorage.setItem("userInfo", [res.data.grader, res.data.schoolClass, res.data.subjectType, res.data.username]);
       })
     } else {

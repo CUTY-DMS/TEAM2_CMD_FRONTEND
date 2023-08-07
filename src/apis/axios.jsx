@@ -11,7 +11,13 @@ const instance = axios.create({
 
 instance.interceptors.response.use(
   function (res) { return res; },
-  function (err) { refresh().catch(err => console.log(err)); }
+  function (err) { 
+    if(err.response.status === 401 || err.response.status === 403) refresh();
+    else {
+      alert(`${err.response.status}: ${err.response.data.message}`);
+      window.location.reload();
+    }
+  }
 )
 
 export default instance;
