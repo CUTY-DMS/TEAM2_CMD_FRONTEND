@@ -12,5 +12,10 @@ export const GlobalStyle = createGlobalStyle`
     outline: none;
   } a { 
     font-weight: bolder; 
-  } 
+  } select {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid black;
+  }
 `;
