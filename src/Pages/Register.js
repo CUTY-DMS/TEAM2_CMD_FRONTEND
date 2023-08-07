@@ -37,7 +37,7 @@ export const Register = () => {
 			<Title>회원가입</Title>
       <InputBox>
 				<ITitle>이메일</ITitle>
-				<Input name="userEmail" placeholder="이메일을 입력하세요" onChange={handleChange} />
+				<Input name="user_email" placeholder="이메일을 입력하세요" onChange={handleChange} />
 				<Line />
 			</InputBox>
 			<InputBox>
@@ -147,11 +147,6 @@ const OptionBox = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-top: -10px;
-  & > select {
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-  }
 `
 
 const TwoBox = styled.div`
