@@ -1,14 +1,13 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
 
-export const User = ({ Class, Name, To }) => {
-  return <Wrapper to={To}>
+export const User = ({ Class, Name, ID }) => {
+  return <Wrapper onClick={() => window.location.href = `/StudentDetail/${ID}`}>
     <img src="/imgs/User.svg" alt="img" width="90" height="90" />
     <UserName>{Class} {Name}</UserName>
   </Wrapper>
 }
 
-const Wrapper = styled(Link)`
+const Wrapper = styled.div`
   gap: 15px;
   display: flex;
   align-items: center;

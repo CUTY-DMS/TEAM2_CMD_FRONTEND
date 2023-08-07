@@ -37,7 +37,7 @@ export const Router = () => {
             element={accessToken ? <AnnounceRead /> : <Login />}
           />
           <Route
-            path="/StudentDetail"
+            path="/StudentDetail/:id"
             element={accessToken ? <StudentDetail /> : <Login />}
           />
           <Route

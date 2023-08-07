@@ -49,7 +49,6 @@ export const EditProfile = () => {
     if(e.target.name==="grader" || e.target.name==="schoolClass") setUserInfo({...userInfo, [name]: Number(value)});
     else if(e.target.name==="password" || e.target.name==="newPassword") setPassword({...password, [name]: value});
     else setUserInfo({...userInfo, [name]: value});
-    console.log(userInfo);
   }
 
   return (
