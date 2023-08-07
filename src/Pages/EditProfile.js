@@ -7,7 +7,8 @@ export const EditProfile = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
     grader: 0,
-    schoolClass: 0
+    schoolClass: 0,
+    subjectType: ""
   });
   const [password, setPassword] = useState({
     password: "",
@@ -21,8 +22,8 @@ export const EditProfile = () => {
       username: data[3],
       grader: Number(data[0]),
       schoolClass: Number(data[1]),
+      subjectType: data[2]
     })
-    console.log(userInfo);
   }, [])
 
   const handleSave = () => {
@@ -39,19 +40,16 @@ export const EditProfile = () => {
 
   const gotoProf = () => {
     alert("정보가 정상적으로 수정되었습니다");
-    localStorage.removeItem("userInfo");
+    localStorage.setItem("userInfo", [userInfo.grader, userInfo.schoolClass, userInfo.subjectType, userInfo.username]);
     window.location.href = "/Myprofile";
   }
+
   const handleChange = (e) => {
     const {name, value} = e.target;
     if(e.target.name==="grader" || e.target.name==="schoolClass") setUserInfo({...userInfo, [name]: Number(value)});
     else if(e.target.name==="password" || e.target.name==="newPassword") setPassword({...password, [name]: value});
     else setUserInfo({...userInfo, [name]: value});
-  }
-
-  const handlePWToggle = (e) => {
-    const {checked} = e.target;
-    setPwChange(checked);
+    console.log(userInfo);
   }
 
   return (
@@ -89,12 +87,26 @@ export const EditProfile = () => {
                     <option value={4}>4반</option>
                   </select>
                 </Charger>
+                <Charger> 과목
+                <select name="subjectType" onChange={handleChange} defaultValue={userInfo.subjectType} key={userInfo.subjectType}>
+                  <option disabled>과목</option>
+                  <option value="KOREAN">국어</option>
+                  <option value="MATH">수학</option>
+                  <option value="SOCIAL">사회</option>
+                  <option value="SCIENCE">과학</option>
+                  <option value="ENGLISH">영어</option>
+                  <option value="HISTORY">역사</option>
+                  <option value="ART">미술</option>
+                  <option value="ATHLETIC">체육</option>
+                  <option value="MUSIC">음악</option>
+                </select>
+                </Charger>
               </InfoTitle>
             </div>
             <Line />
             <div>
               <InfoTitle>
-                <PWEdit>비밀번호 수정 여부 <input type="checkbox" name="pwEdit" onChange={handlePWToggle}/></PWEdit>
+                <PWEdit>비밀번호 수정 여부 <input type="checkbox" name="pwEdit" onChange={e => setPwChange(e.target.checked)}/></PWEdit>
                 <Name style={{display: `${pwChange? "flex" : "none"}`}}>이전 비밀번호 <input name="password" type="password" onChange={handleChange}/></Name>
                 <Name style={{display: `${pwChange? "flex" : "none"}`}}>새 비밀번호 <input name="newPassword" type="password" onChange={handleChange}/></Name>
               </InfoTitle>
