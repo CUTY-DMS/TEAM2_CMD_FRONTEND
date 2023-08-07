@@ -17,9 +17,11 @@ export const Login = () => {
 
   const handleLogin = () => {
     signIn(data).then(res => {
-      localStorage.setItem("accessToken", res.data.accessToken);
-      localStorage.setItem("refreshToken", res.data.refreshToken);
-      window.location.href = "/";
+      if(res) {
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
+        window.location.href = "/";
+      }
     })
   }
 
