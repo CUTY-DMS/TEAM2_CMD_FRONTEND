@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
+import { postEmail } from "../apis/post/postEmail";
 
 export const FindPassword = () => {
+  const [data, setData] = useState({
+    userEmail: ""
+  });
+
+  const handleClick = () => {
+    postEmail(data).then(res => {
+      if(res) {
+        alert("해당 이메일로 가입한 계정의 비밀번호가 메일함으로 발송되었습니다");
+        window.location.href = "/Login";
+      }
+    })
+  }
+
   return (
     <Wrapper>
       <Box>
         <Title>비밀번호 찾기</Title>
         <InputWrapper>
           <InputBox>
-            <Input placeholder="이메일을 입력하세요" />
+            <Input placeholder="이메일을 입력하세요" onChange={ e => setData({ userEmail: e.target.value }) }/>
             <Line />
           </InputBox>
-          <Btn>비밀번호 찾기</Btn>
+          <Btn onClick={handleClick}>비밀번호 찾기</Btn>
         </InputWrapper>
+        <Return type="button" value="돌아가기" onClick={() => window.location.href = "/Login"} />
       </Box>
     </Wrapper>
   );
@@ -44,7 +59,7 @@ const InputBox = styled.div`
   justify-content: center;
   width: 75%;
   max-width: 400px;
-  margin-bottom: 400px;
+  margin-bottom: 300px;
 `;
 
 const Line = styled.div`
@@ -86,4 +101,17 @@ const Box = styled.div`
   border-radius: 10px;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
+
+const Return = styled.input`
+  width: 70%;
+  height: 40px;
+  max-width: 300px;
+  cursor: pointer;
+  margin-top: 90px;
+  border-radius: 15px;
+  background: #ffcf5e;
+  box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
+  font-size: medium;
+  font-weight: bolder;
 `;
